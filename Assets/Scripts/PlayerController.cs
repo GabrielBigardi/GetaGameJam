@@ -71,6 +71,174 @@ public class PlayerController : MonoBehaviour {
 		{
 			//anim.SetBool("Walk", false);
 		}
+
+
+		if (Input.GetKeyDown (KeyCode.Z)) {
+
+			int itemId = 0;
+
+			if (!InventoryManager.Instance.slotOccupied [0])
+				InventoryManager.Instance.AddItem (0, itemId);
+			else if(InventoryManager.Instance.slotOccupied [0]) {
+				if (InventoryManager.Instance.slotOneItem == itemId) {
+					InventoryManager.Instance.AddItem (0, itemId);
+				} else {
+					if (!InventoryManager.Instance.slotOccupied [1]) {
+						InventoryManager.Instance.AddItem (1, itemId);
+					} else if (InventoryManager.Instance.slotOccupied [1]) {
+						if (InventoryManager.Instance.slotTwoItem == itemId) {
+							InventoryManager.Instance.AddItem (1, itemId);
+						} else {
+							if (!InventoryManager.Instance.slotOccupied [2]) {
+								InventoryManager.Instance.AddItem (2, itemId);
+							}else if(InventoryManager.Instance.slotOccupied [2]){
+								if (InventoryManager.Instance.slotThreeItem == itemId) {
+									InventoryManager.Instance.AddItem (2, itemId);
+								} else {
+									if (!InventoryManager.Instance.slotOccupied [3]) {
+										InventoryManager.Instance.AddItem (3, itemId);
+									} else if (InventoryManager.Instance.slotOccupied [3]) {
+										if (InventoryManager.Instance.slotFourItem == itemId) {
+											InventoryManager.Instance.AddItem (3, itemId);
+										} else {
+											return;
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+				
+			
+		}
+
+
+		if (Input.GetKeyDown (KeyCode.X)) {
+
+			int itemId = 1;
+
+			if (!InventoryManager.Instance.slotOccupied [0])
+				InventoryManager.Instance.AddItem (0, itemId);
+			else if(InventoryManager.Instance.slotOccupied [0]) {
+				if (InventoryManager.Instance.slotOneItem == itemId) {
+					InventoryManager.Instance.AddItem (0, itemId);
+				} else {
+					if (!InventoryManager.Instance.slotOccupied [1]) {
+						InventoryManager.Instance.AddItem (1, itemId);
+					} else if (InventoryManager.Instance.slotOccupied [1]) {
+						if (InventoryManager.Instance.slotTwoItem == itemId) {
+							InventoryManager.Instance.AddItem (1, itemId);
+						} else {
+							if (!InventoryManager.Instance.slotOccupied [2]) {
+								InventoryManager.Instance.AddItem (2, itemId);
+							}else if(InventoryManager.Instance.slotOccupied [2]){
+								if (InventoryManager.Instance.slotThreeItem == itemId) {
+									InventoryManager.Instance.AddItem (2, itemId);
+								} else {
+									if (!InventoryManager.Instance.slotOccupied [3]) {
+										InventoryManager.Instance.AddItem (3, itemId);
+									} else if (InventoryManager.Instance.slotOccupied [3]) {
+										if (InventoryManager.Instance.slotFourItem == itemId) {
+											InventoryManager.Instance.AddItem (3, itemId);
+										} else {
+											return;
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+
+
+		}
+
+		if (Input.GetKeyDown (KeyCode.C)) {
+
+			int itemId = 2;
+
+			if (!InventoryManager.Instance.slotOccupied [0])
+				InventoryManager.Instance.AddItem (0, itemId);
+			else if(InventoryManager.Instance.slotOccupied [0]) {
+				if (InventoryManager.Instance.slotOneItem == itemId) {
+					InventoryManager.Instance.AddItem (0, itemId);
+				} else {
+					if (!InventoryManager.Instance.slotOccupied [1]) {
+						InventoryManager.Instance.AddItem (1, itemId);
+					} else if (InventoryManager.Instance.slotOccupied [1]) {
+						if (InventoryManager.Instance.slotTwoItem == itemId) {
+							InventoryManager.Instance.AddItem (1, itemId);
+						} else {
+							if (!InventoryManager.Instance.slotOccupied [2]) {
+								InventoryManager.Instance.AddItem (2, itemId);
+							}else if(InventoryManager.Instance.slotOccupied [2]){
+								if (InventoryManager.Instance.slotThreeItem == itemId) {
+									InventoryManager.Instance.AddItem (2, itemId);
+								} else {
+									if (!InventoryManager.Instance.slotOccupied [3]) {
+										InventoryManager.Instance.AddItem (3, itemId);
+									} else if (InventoryManager.Instance.slotOccupied [3]) {
+										if (InventoryManager.Instance.slotFourItem == itemId) {
+											InventoryManager.Instance.AddItem (3, itemId);
+										} else {
+											return;
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+
+
+		}
+
+		if (Input.GetKeyDown (KeyCode.V)) {
+
+			int itemId = 3;
+
+			if (!InventoryManager.Instance.slotOccupied [0])
+				InventoryManager.Instance.AddItem (0, itemId);
+			else if(InventoryManager.Instance.slotOccupied [0]) {
+				if (InventoryManager.Instance.slotOneItem == itemId) {
+					InventoryManager.Instance.AddItem (0, itemId);
+				} else {
+					if (!InventoryManager.Instance.slotOccupied [1]) {
+						InventoryManager.Instance.AddItem (1, itemId);
+					} else if (InventoryManager.Instance.slotOccupied [1]) {
+						if (InventoryManager.Instance.slotTwoItem == itemId) {
+							InventoryManager.Instance.AddItem (1, itemId);
+						} else {
+							if (!InventoryManager.Instance.slotOccupied [2]) {
+								InventoryManager.Instance.AddItem (2, itemId);
+							}else if(InventoryManager.Instance.slotOccupied [2]){
+								if (InventoryManager.Instance.slotThreeItem == itemId) {
+									InventoryManager.Instance.AddItem (2, itemId);
+								} else {
+									if (!InventoryManager.Instance.slotOccupied [3]) {
+										InventoryManager.Instance.AddItem (3, itemId);
+									} else if (InventoryManager.Instance.slotOccupied [3]) {
+										if (InventoryManager.Instance.slotFourItem == itemId) {
+											InventoryManager.Instance.AddItem (3, itemId);
+										} else {
+											return;
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+
+
+		}
+
+
 	}
 
 	void FixedUpdate()
