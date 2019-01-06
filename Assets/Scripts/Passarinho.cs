@@ -7,14 +7,16 @@ public class Passarinho : MonoBehaviour {
 	public Transform emojis;
 	public Sprite[] emojiTotal;
 
+	public float emojiTime;
+
 	void Start(){
 		StartCoroutine (Emoji ());
 	}
 
 	IEnumerator Emoji(){
-		yield return new WaitForSeconds (1f);
+		yield return new WaitForSeconds (emojiTime);
 		EnableEmoji (0);
-		yield return new WaitForSeconds (3f);
+		yield return new WaitForSeconds (2f);
 		HideEmoji ();
 	}
 

@@ -16,15 +16,6 @@ public class InventoryManager : MonoBehaviour {
 
 	public int[] slotItem = new int[8];
 	public int[] slotAmount = new int[8];
-	//public int slotOneItem;
-	//public int slotTwoItem;
-	//public int slotThreeItem;
-	//public int slotFourItem;
-	//
-	//public int slotOneAmount;
-	//public int slotTwoAmount;
-	//public int slotThreeAmount;
-	//public int slotFourAmount;
 
 	public GameObject hud1;
 	public GameObject hud2;

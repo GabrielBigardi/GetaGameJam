@@ -104,6 +104,7 @@ MonoBehaviour:
   emojis: {fileID: 4327873366567388}
   emojiTotal:
   - {fileID: 21300000, guid: 92a3c32b078f86b4a9f6e1a7609b96ca, type: 3}
+  emojiTime: 3
 --- !u!212 &212537552965389406
 SpriteRenderer:
   m_ObjectHideFlags: 1

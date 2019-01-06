@@ -4,7 +4,14 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Botao
+  - Botao_Vermelho
+  - Botao_Verde
+  - Botao_Amarelo
+  - Botao_Azul
+  - Botao_Reset1
+  - Botao_Reset2
+  - Botao_Reset4
+  - Botao_Reset3
   layers:
   - Default
   - TransparentFX

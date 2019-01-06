@@ -119,6 +119,13 @@ public class PlayerController : MonoBehaviour {
 		rgbd.MovePosition(rgbd.position + mov * speed * Time.deltaTime);
 	}
 
+	void OnTriggerEnter2D(Collider2D col){
+		if (col.tag == "Botao_Reset1")
+			PuzzleOneManager.Instance.ResetBotoes ();
+		if (col.tag == "Botao_Reset2")
+			PuzzleTwoManager.Instance.ResetBotoes ();
+	}
+
 	IEnumerator test_Cutscene(){
 		Cutscene ("IdleUp");
 		yield return new WaitForSeconds (3f);
@@ -131,9 +138,9 @@ public class PlayerController : MonoBehaviour {
 		Cutscene ("MoveDown");
 		yield return new WaitForSeconds (0.65f);
 		Cutscene ("IdleUp");
-		transform.position = new Vector3 (-0.28f, -3.44f, 0f);
+		transform.position = new Vector3 (-0.28f, -53.44f, 0f);
 		yield return new WaitForSeconds (2f);
-		Instantiate (monsterIncomingPrefab, new Vector3 (1.89f, -0.73f, 0f), Quaternion.identity);
+		Instantiate (monsterIncomingPrefab, new Vector3 (1.89f, -50.73f, 0f), Quaternion.identity);
 		yield return new WaitForSeconds (2f);
 		Cutscene ("MoveUp");
 		yield return new WaitForSeconds (0.85f);
