@@ -24,6 +24,11 @@ public class InventoryManager : MonoBehaviour {
 	public int slotThreeAmount;
 	public int slotFourAmount;
 
+	public GameObject hud1;
+	public GameObject hud2;
+
+
+
 	//public GameObject[] selectPanel;
 
 	void Start(){
@@ -128,6 +133,16 @@ public class InventoryManager : MonoBehaviour {
 		if (slotFourAmount > 1) {
 			amountText [3].enabled = true;
 		}
+	}
+
+	public void HideInventory(){
+		hud1.SetActive (false);
+		hud2.SetActive (false);
+	}
+
+	public void ShowInventory(){
+		hud1.SetActive (true);
+		hud2.SetActive (true);
 	}
 
 	//public void HighlightItem(int slotId){
