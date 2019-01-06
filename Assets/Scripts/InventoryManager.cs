@@ -7,22 +7,24 @@ public class InventoryManager : MonoBehaviour {
 
 	public static InventoryManager Instance;
 
-	public int slotsAmount = 4;
+	public int slotsAmount = 8;
 
 	public Sprite[] items = new Sprite[4];
-	public Image[] slot = new Image[4];
-	public Text[] amountText = new Text[4];
-	public bool[] slotOccupied = new bool[4];
+	public Image[] slot = new Image[8];
+	public Text[] amountText = new Text[8];
+	public bool[] slotOccupied = new bool[8];
 
-	public int slotOneItem;
-	public int slotTwoItem;
-	public int slotThreeItem;
-	public int slotFourItem;
-
-	public int slotOneAmount;
-	public int slotTwoAmount;
-	public int slotThreeAmount;
-	public int slotFourAmount;
+	public int[] slotItem = new int[8];
+	public int[] slotAmount = new int[8];
+	//public int slotOneItem;
+	//public int slotTwoItem;
+	//public int slotThreeItem;
+	//public int slotFourItem;
+	//
+	//public int slotOneAmount;
+	//public int slotTwoAmount;
+	//public int slotThreeAmount;
+	//public int slotFourAmount;
 
 	public GameObject hud1;
 	public GameObject hud2;
@@ -52,86 +54,40 @@ public class InventoryManager : MonoBehaviour {
 		slot[slotId].sprite = items[itemId];
 		slotOccupied [slotId] = true;
 
-		switch (slotId) {
-		case 0:
-			if (itemId == 0) {
-				slotOneItem = 0;
-			} else if (itemId == 1) {
-				slotOneItem = 1;
-			} else if (itemId == 2) {
-				slotOneItem = 2;
-			} else if (itemId == 3) {
-				slotOneItem = 3;
-			}
-			slotOneAmount++;
-			RefreshAmount ();
-			break;
-
-		case 1:
-			if (itemId == 0) {
-				slotTwoItem = 0;
-			} else if (itemId == 1) {
-				slotTwoItem = 1;
-			} else if (itemId == 2) {
-				slotTwoItem = 2;
-			} else if (itemId == 3) {
-				slotTwoItem = 3;
-			}
-			slotTwoAmount++;
-			RefreshAmount ();
-			break;
-
-		case 2:
-			if (itemId == 0) {
-				slotThreeItem = 0;
-			} else if (itemId == 1) {
-				slotThreeItem = 1;
-			} else if (itemId == 2) {
-				slotThreeItem = 2;
-			} else if (itemId == 3) {
-				slotThreeItem = 3;
-			}
-			slotThreeAmount++;
-			RefreshAmount ();
-			break;
-
-		case 3:
-			if (itemId == 0) {
-				slotFourItem = 0;
-			} else if (itemId == 1) {
-				slotFourItem = 1;
-			} else if (itemId == 2) {
-				slotFourItem = 2;
-			} else if (itemId == 3) {
-				slotFourItem = 3;
-			}
-			slotFourAmount++;
-			RefreshAmount ();
-			break;
-		}
-
-
-
+		slotItem [slotId] = itemId;
+		slotAmount [slotId]++;
+		RefreshAmount ();
 
 	}
 
-	public void RefreshAmount(){
-		amountText [0].text = "x" + slotOneAmount.ToString ();
-		amountText [1].text = "x" + slotTwoAmount.ToString ();
-		amountText [2].text = "x" + slotThreeAmount.ToString ();
-		amountText [3].text = "x" + slotFourAmount.ToString ();
+	//public void RefreshAmount(){
+	//	amountText [0].text = "x" + slotOneAmount.ToString ();
+	//	amountText [1].text = "x" + slotTwoAmount.ToString ();
+	//	amountText [2].text = "x" + slotThreeAmount.ToString ();
+	//	amountText [3].text = "x" + slotFourAmount.ToString ();
+	//
+	//	if (slotOneAmount > 1) {
+	//		amountText [0].enabled = true;
+	//	}
+	//	if (slotTwoAmount > 1) {
+	//		amountText [1].enabled = true;
+	//	}
+	//	if (slotThreeAmount > 1) {
+	//		amountText [2].enabled = true;
+	//	}
+	//	if (slotFourAmount > 1) {
+	//		amountText [3].enabled = true;
+	//	}
+	//}
 
-		if (slotOneAmount > 1) {
-			amountText [0].enabled = true;
-		}
-		if (slotTwoAmount > 1) {
-			amountText [1].enabled = true;
-		}
-		if (slotThreeAmount > 1) {
-			amountText [2].enabled = true;
-		}
-		if (slotFourAmount > 1) {
-			amountText [3].enabled = true;
+	public void RefreshAmount(){
+		for (int i = 0; i < slotAmount.Length; i++) {
+			amountText [i].text = slotAmount [i].ToString ();
+			if (slotAmount [i] > 1) {
+				amountText [i].enabled = true;
+			} else {
+				amountText [i].enabled = false;
+			}
 		}
 	}
 
