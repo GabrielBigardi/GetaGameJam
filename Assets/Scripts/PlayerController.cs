@@ -33,6 +33,11 @@ public class PlayerController : MonoBehaviour {
 	public Transform hitLeftPos;
 	public Transform hitRightPos;
 
+	public Transform ponteAtrapalhador;
+	public Transform ponteTrigger;
+	public Transform ponteObj;
+	public Sprite[] ponteSpr;
+
 	void Start()
 	{
 		if(Instance == null)
@@ -141,6 +146,8 @@ public class PlayerController : MonoBehaviour {
 			PuzzleOneManager.Instance.ResetBotoes ();
 		if (col.tag == "Botao_Reset2")
 			PuzzleTwoManager.Instance.ResetBotoes ();
+		if (col.tag == "PonteTrigger")
+			CheckMadeira ();
 	}
 
 	IEnumerator test_Cutscene(){
@@ -185,6 +192,44 @@ public class PlayerController : MonoBehaviour {
 		canMove = true;
 		HideEmoji ();
 		hatchetAttack = false;
+	}
+
+	IEnumerator Ponte_CR(){
+		EnableEmoji (0);
+		canMove = false;
+		yield return new WaitForSeconds (1f);
+		canMove = true;
+		HideEmoji ();
+	}
+
+	void PonteConstruida(){
+		ponteTrigger.gameObject.SetActive (false);
+		ponteObj.GetComponent<SpriteRenderer> ().sprite = ponteSpr [1];
+		//ponteObj.GetComponent<BoxCollider2D> ().enabled = false;
+		ponteAtrapalhador.gameObject.SetActive (false);
+	}
+
+	void PonteDestruida(){
+		ponteTrigger.gameObject.SetActive (true);
+		ponteObj.GetComponent<SpriteRenderer> ().sprite = ponteSpr [0];
+		//ponteObj.GetComponent<BoxCollider2D> ().enabled = true;
+		ponteAtrapalhador.gameObject.SetActive (true);
+
+	}
+
+	void CheckMadeira(){
+		for (int i = 0; i < InventoryManager.Instance.slotAmount.Length; i++) {
+			if (InventoryManager.Instance.slotItem [i] == 2) {
+				if (InventoryManager.Instance.slotAmount [i] >= 5) {
+					PonteConstruida ();
+				} else {
+					print ("Pegue mais madeiras");
+				}
+			} else {
+				print ("Não tem madeira");
+			}
+		}
+		StartCoroutine (Ponte_CR ());
 	}
 
 	void CheckTree(){

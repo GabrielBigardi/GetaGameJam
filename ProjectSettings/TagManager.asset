@@ -12,6 +12,7 @@ TagManager:
   - Botao_Reset2
   - Botao_Reset4
   - Botao_Reset3
+  - PonteTrigger
   layers:
   - Default
   - TransparentFX
