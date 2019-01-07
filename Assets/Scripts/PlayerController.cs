@@ -53,11 +53,10 @@ public class PlayerController : MonoBehaviour {
 		anim = GetComponent<Animator>();
 		curDir = Directions.Down;
 		anim.SetFloat ("MovY", -1.0f);
-		//InventoryManager.Instance.HideInventory ();
 
-		//disabled = true;
-		//
-		//StartCoroutine (test_Cutscene ());
+
+		disabled = true;
+		StartCoroutine (test_Cutscene ());
 
 	}
 
@@ -148,6 +147,9 @@ public class PlayerController : MonoBehaviour {
 			PuzzleTwoManager.Instance.ResetBotoes ();
 		if (col.tag == "PonteTrigger")
 			CheckMadeira ();
+		if (col.tag == "Warp") {
+			transform.position = col.GetComponentInChildren<Warpzone> ().warpPos.position;
+		}
 	}
 
 	IEnumerator test_Cutscene(){

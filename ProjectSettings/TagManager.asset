@@ -13,6 +13,8 @@ TagManager:
   - Botao_Reset4
   - Botao_Reset3
   - PonteTrigger
+  - ExitCabana
+  - EntranceCabana
   layers:
   - Default
   - TransparentFX
