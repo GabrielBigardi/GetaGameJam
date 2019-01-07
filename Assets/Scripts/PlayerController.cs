@@ -194,7 +194,7 @@ public class PlayerController : MonoBehaviour {
 			hit = Physics2D.Raycast (hitUpPos.position, hitUpPos.forward, 0.05f);
 			if (hit.collider != null) {
 				if (hit.collider.gameObject.name.Contains ("arvore")) {
-					GiveItem (2);
+					hit.collider.gameObject.GetComponent<Arvore> ().TakeDamage ();
 				}
 			}
 		} else if (curDir == Directions.Down) {
@@ -202,7 +202,7 @@ public class PlayerController : MonoBehaviour {
 			hit = Physics2D.Raycast (hitDownPos.position, hitDownPos.forward, 0.05f);
 			if (hit.collider != null) {
 				if (hit.collider.gameObject.name.Contains ("arvore")) {
-					GiveItem (2);
+					hit.collider.gameObject.GetComponent<Arvore> ().TakeDamage ();
 				}
 			}
 		} else if (curDir == Directions.Left) {
@@ -210,7 +210,7 @@ public class PlayerController : MonoBehaviour {
 			hit = Physics2D.Raycast (hitLeftPos.position, hitLeftPos.forward, 0.05f);
 			if (hit.collider != null) {
 				if (hit.collider.gameObject.name.Contains ("arvore")) {
-					GiveItem (2);
+					hit.collider.gameObject.GetComponent<Arvore> ().TakeDamage ();
 				}
 			}
 		} else if (curDir == Directions.Right) {
@@ -218,7 +218,7 @@ public class PlayerController : MonoBehaviour {
 			hit = Physics2D.Raycast (hitRightPos.position, hitRightPos.forward, 0.05f);
 			if (hit.collider != null) {
 				if (hit.collider.gameObject.name.Contains ("arvore")) {
-					GiveItem (2);
+					hit.collider.gameObject.GetComponent<Arvore> ().TakeDamage ();
 				}
 			}
 		}
