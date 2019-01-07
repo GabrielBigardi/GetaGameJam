@@ -10,6 +10,10 @@ public class PuzzleOneManager : MonoBehaviour {
 	public Vector3[] caixasStartPos;
 	public int botoesCorretos;
 
+	public Transform portao;
+	public Sprite portaoFechado;
+	public Sprite portaoAberto;
+
 	void Start(){
 
 	if(Instance == null)
@@ -38,7 +42,19 @@ public class PuzzleOneManager : MonoBehaviour {
 	}
 
 	public void CheckBotoes(){
-		if (botoesCorretos == caixasObj.Length)
+		if (botoesCorretos == caixasObj.Length) {
 			print ("Todos corretos, Puzzle 1 passou");
+			AbrirPortao ();
+		}
+	}
+
+	public void AbrirPortao(){
+		portao.GetComponent<SpriteRenderer> ().sprite = portaoAberto;
+		portao.GetComponent<BoxCollider2D> ().enabled = false;
+	}
+
+	public void FecharPortao(){
+		portao.GetComponent<SpriteRenderer> ().sprite = portaoFechado;
+		portao.GetComponent<BoxCollider2D> ().enabled = true;
 	}
 }

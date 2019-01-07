@@ -23,6 +23,16 @@ public class PlayerController : MonoBehaviour {
 
 	public Transform monsterIncomingPrefab;
 
+	bool hatchetAttack = false;
+	bool canMove = true;
+
+	public bool hasHatchet = false;
+
+	public Transform hitUpPos;
+	public Transform hitDownPos;
+	public Transform hitLeftPos;
+	public Transform hitRightPos;
+
 	void Start()
 	{
 		if(Instance == null)
@@ -38,10 +48,11 @@ public class PlayerController : MonoBehaviour {
 		anim = GetComponent<Animator>();
 		curDir = Directions.Down;
 		anim.SetFloat ("MovY", -1.0f);
+		//InventoryManager.Instance.HideInventory ();
 
-		disabled = true;
-
-		StartCoroutine (test_Cutscene ());
+		//disabled = true;
+		//
+		//StartCoroutine (test_Cutscene ());
 
 	}
 
@@ -57,7 +68,7 @@ public class PlayerController : MonoBehaviour {
 
 
 
-		if(mov != Vector2.zero)
+		if(canMove && mov != Vector2.zero)
 		{
 			anim.SetFloat("MovX", mov.x);
 			anim.SetFloat("MovY", mov.y);
@@ -90,6 +101,7 @@ public class PlayerController : MonoBehaviour {
 
 		if (Input.GetKeyDown (KeyCode.Z)) {
 			GiveItem (0);
+			hasHatchet = true;
 		}
 
 		if (Input.GetKeyDown (KeyCode.X)) {
@@ -111,11 +123,16 @@ public class PlayerController : MonoBehaviour {
 				InventoryManager.Instance.ShowInventory ();
 		}
 
+		if (hasHatchet && !hatchetAttack && Input.GetKeyDown (KeyCode.Space)) {
+			StartCoroutine (Hatchet_CR());
+		}
+
 
 	}
 
 	void FixedUpdate()
 	{
+		if(canMove)
 		rgbd.MovePosition(rgbd.position + mov * speed * Time.deltaTime);
 	}
 
@@ -148,8 +165,65 @@ public class PlayerController : MonoBehaviour {
 		EnableEmoji (0);
 		yield return new WaitForSeconds (2f);
 		HideEmoji ();
+		yield return new WaitForSeconds (4.5f);
+		Camera.main.transform.parent = this.transform;
+		Camera.main.transform.localPosition = new Vector3 (0f, 0f, -10f);
+		transform.position = new Vector3 (1f,-8.68f,0f);
+		Cutscene ("IdleUp");
+		disabled = false;
+		InventoryManager.Instance.ShowInventory ();
 
 		print ("Fim de cutscene");
+	}
+
+	IEnumerator Hatchet_CR(){
+		hatchetAttack = true;
+		EnableEmoji (13);
+		canMove = false;
+		CheckTree ();
+		yield return new WaitForSeconds (1f);
+		canMove = true;
+		HideEmoji ();
+		hatchetAttack = false;
+	}
+
+	void CheckTree(){
+
+		if (curDir == Directions.Up) {
+			RaycastHit2D hit;
+			hit = Physics2D.Raycast (hitUpPos.position, hitUpPos.forward, 0.05f);
+			if (hit.collider != null) {
+				if (hit.collider.gameObject.name.Contains ("arvore")) {
+					GiveItem (2);
+				}
+			}
+		} else if (curDir == Directions.Down) {
+			RaycastHit2D hit;
+			hit = Physics2D.Raycast (hitDownPos.position, hitDownPos.forward, 0.05f);
+			if (hit.collider != null) {
+				if (hit.collider.gameObject.name.Contains ("arvore")) {
+					GiveItem (2);
+				}
+			}
+		} else if (curDir == Directions.Left) {
+			RaycastHit2D hit;
+			hit = Physics2D.Raycast (hitLeftPos.position, hitLeftPos.forward, 0.05f);
+			if (hit.collider != null) {
+				if (hit.collider.gameObject.name.Contains ("arvore")) {
+					GiveItem (2);
+				}
+			}
+		} else if (curDir == Directions.Right) {
+			RaycastHit2D hit;
+			hit = Physics2D.Raycast (hitRightPos.position, hitRightPos.forward, 0.05f);
+			if (hit.collider != null) {
+				if (hit.collider.gameObject.name.Contains ("arvore")) {
+					GiveItem (2);
+				}
+			}
+		}
+
+
 	}
 
 	void Cutscene(string command){
