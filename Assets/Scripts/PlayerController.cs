@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour {
 	public Sprite[] emojiTotal;
 
 	public Transform monsterIncomingPrefab;
+    public Transform playerIndoPrefab;
 
 	bool hatchetAttack = false;
 	bool canMove = true;
@@ -192,11 +193,9 @@ public class PlayerController : MonoBehaviour {
 		EnableEmoji (0);
 		yield return new WaitForSeconds (2f);
 		HideEmoji ();
-        yield return new WaitForSeconds (5.5f);
-
-        Camera.main.transform.parent = this.transform;
-		Camera.main.transform.localPosition = new Vector3 (0f, 0f, -10f);
-        //transform.position = new Vector3 (1.3f,71.6f,0f);
+        Cutscene("IdleDown");
+        yield return new WaitForSeconds (1.5f);
+        Instantiate(playerIndoPrefab, new Vector3(-0.966f, -50.8f, 0f), Quaternion.identity);
         StartCoroutine(Teleport_CR(1.3f,71.6f,0f));
 		//Cutscene ("IdleUp");
 		disabled = false;
@@ -232,6 +231,15 @@ public class PlayerController : MonoBehaviour {
         FadeManager.Instance.StartCoroutine(FadeManager.Instance.FadeImage(false));
         yield return new WaitForSeconds(1.5f);
         transform.position = new Vector3(x, y, z);
+        if (!Camera.main.transform.IsChildOf(this.transform))
+        {
+            Camera.main.transform.SetParent(this.transform);
+            Camera.main.transform.localPosition = new Vector3(0f, 0f, -10f);
+        }
+        if(GetComponent<SpriteRenderer>().enabled != true)
+        {
+            GetComponent<SpriteRenderer>().enabled = true;
+        }
         yield return new WaitForSeconds(0.5f);
         FadeManager.Instance.StartCoroutine(FadeManager.Instance.FadeImage(true));
         yield return new WaitForSeconds(1f);
