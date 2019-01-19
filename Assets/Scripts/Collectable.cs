@@ -18,6 +18,7 @@ public class Collectable : MonoBehaviour
 
                 case Item.Machado:
                     PlayerController.Instance.GiveItem(0);
+                    PlayerController.Instance.hasHatchet = true;
                     break;
 
                 case Item.Chave:

@@ -54,6 +54,7 @@ public class PlayerController : MonoBehaviour {
 		curDir = Directions.Down;
 		anim.SetFloat ("MovY", -1.0f);
 
+        transform.position = new Vector3(1.15f, -49.455f, 0f);
 
 		disabled = true;
 		StartCoroutine (test_Cutscene ());
@@ -186,7 +187,7 @@ public class PlayerController : MonoBehaviour {
 		yield return new WaitForSeconds (4.5f);
 		Camera.main.transform.parent = this.transform;
 		Camera.main.transform.localPosition = new Vector3 (0f, 0f, -10f);
-		transform.position = new Vector3 (1f,-8.68f,0f);
+		transform.position = new Vector3 (1.3f,71.6f,0f);
 		Cutscene ("IdleUp");
 		disabled = false;
 		InventoryManager.Instance.ShowInventory ();

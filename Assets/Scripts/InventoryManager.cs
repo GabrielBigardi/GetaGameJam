@@ -9,7 +9,9 @@ public class InventoryManager : MonoBehaviour {
 
 	public int slotsAmount = 8;
 
-	public Sprite[] items = new Sprite[4];
+    [Tooltip("Machado = 0\nChave = 1\nMadeira = 2\nPocao1 = 3\nPocao2 = 4\nPocao3 = 5")]
+    public Sprite[] items = new Sprite[4];
+
 	public Image[] slot = new Image[8];
 	public Text[] amountText = new Text[8];
 	public bool[] slotOccupied = new bool[8];
