@@ -48,37 +48,43 @@ public class InventoryManager : MonoBehaviour {
 		slotItem [slotId] = itemId;
 		slotAmount [slotId]++;
 		RefreshAmount ();
-
 	}
 
-	//public void RefreshAmount(){
-	//	amountText [0].text = "x" + slotOneAmount.ToString ();
-	//	amountText [1].text = "x" + slotTwoAmount.ToString ();
-	//	amountText [2].text = "x" + slotThreeAmount.ToString ();
-	//	amountText [3].text = "x" + slotFourAmount.ToString ();
-	//
-	//	if (slotOneAmount > 1) {
-	//		amountText [0].enabled = true;
-	//	}
-	//	if (slotTwoAmount > 1) {
-	//		amountText [1].enabled = true;
-	//	}
-	//	if (slotThreeAmount > 1) {
-	//		amountText [2].enabled = true;
-	//	}
-	//	if (slotFourAmount > 1) {
-	//		amountText [3].enabled = true;
-	//	}
-	//}
+    public void RemoveItem(int slotId, int itemId)
+    {
+        //slot[slotId].color = new Color(0,0,0,0);
+        //slotOccupied[slotId] = false;
+
+        //slotItem[slotId] = 0;
+        if(slotAmount[slotId] >= 1)
+        {
+        slotAmount[slotId]--;
+            
+        RefreshAmount();
+        }
+    }
+
+
 
 	public void RefreshAmount(){
 		for (int i = 0; i < slotAmount.Length; i++) {
 			amountText [i].text = slotAmount [i].ToString ();
 			if (slotAmount [i] > 1) {
 				amountText [i].enabled = true;
-			} else {
-				amountText [i].enabled = false;
-			}
+                slot[i].color = Color.white;
+            } else if(slotAmount[i] == 1) {
+                amountText[i].enabled = false;
+                //slotItem[i] = 0;
+                //slotOccupied[i] = false;
+                //slot[i].color = new Color(0, 0, 0, 0);
+            }
+            else
+            {
+                amountText[i].enabled = false;
+                slotItem[i] = 0;
+                slotOccupied[i] = false;
+                slot[i].color = new Color(0, 0, 0, 0);
+            }
 		}
 	}
 

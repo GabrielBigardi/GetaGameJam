@@ -120,6 +120,11 @@ public class PlayerController : MonoBehaviour {
 			GiveItem (3);
 		}
 
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            RemoveItem(0);
+        }
+
 		if (Input.GetKeyDown (KeyCode.F)) {
 			if(InventoryManager.Instance.hud1.activeInHierarchy)
 				InventoryManager.Instance.HideInventory ();
@@ -362,18 +367,42 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	public void GiveItem(int itemId){
-		for (int i = 0; i < InventoryManager.Instance.slotAmount.Length; i++) {
-			if (!InventoryManager.Instance.slotOccupied [i]) {
-				InventoryManager.Instance.AddItem (i, itemId);
-				break;
-			} else if (InventoryManager.Instance.slotOccupied [i]) {
-				if (InventoryManager.Instance.slotItem [i] == itemId) {
-					InventoryManager.Instance.AddItem (i, itemId);
-					break;
-				}
-			}
-		}
+        for (int i = 0; i < InventoryManager.Instance.slotAmount.Length; i++) // loop pelo inventario
+        {
+            if (!InventoryManager.Instance.slotOccupied[i]) // se não tiver ocupado
+            {
+                InventoryManager.Instance.AddItem(i, itemId); // adiciona o item
+                break; // retorna
+            }
+            else if (InventoryManager.Instance.slotOccupied[i]) // senão se tiver ocupado
+            {
+                if (InventoryManager.Instance.slotItem[i] == itemId) // se o item for o mesmo tentando dar
+                {
+                    InventoryManager.Instance.AddItem(i, itemId); // adiciona o item
+                    break;
+                }
+            }
+        }
 	}
+
+    public void RemoveItem(int itemId)
+    {
+        for (int i = 0; i < InventoryManager.Instance.slotAmount.Length; i++) // loop pelo inventario
+        {
+            if (!InventoryManager.Instance.slotOccupied[i]) // se não tiver ocupado
+            {
+                break; // retorna
+            }
+            else if (InventoryManager.Instance.slotOccupied[i]) // senão se tiver ocupado
+            {
+                if (InventoryManager.Instance.slotItem[i] == itemId) // se o item for o mesmo tentando dar
+                {
+                    InventoryManager.Instance.RemoveItem(i, itemId); // adiciona o item
+                    break;
+                }
+            }
+        }
+    }
 
 
 }
