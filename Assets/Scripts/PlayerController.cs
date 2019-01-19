@@ -103,8 +103,16 @@ public class PlayerController : MonoBehaviour {
 			anim.SetBool("Walk", false);
 		}
 
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            FadeManager.Instance.StartCoroutine(FadeManager.Instance.FadeImage(true));
+        }
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            FadeManager.Instance.StartCoroutine(FadeManager.Instance.FadeImage(false));
+        }
 
-		if (Input.GetKeyDown (KeyCode.Z)) {
+        if (Input.GetKeyDown (KeyCode.Z)) {
 			GiveItem (0);
 			hasHatchet = true;
 		}
@@ -184,11 +192,13 @@ public class PlayerController : MonoBehaviour {
 		EnableEmoji (0);
 		yield return new WaitForSeconds (2f);
 		HideEmoji ();
-		yield return new WaitForSeconds (4.5f);
-		Camera.main.transform.parent = this.transform;
+        yield return new WaitForSeconds (5.5f);
+
+        Camera.main.transform.parent = this.transform;
 		Camera.main.transform.localPosition = new Vector3 (0f, 0f, -10f);
-		transform.position = new Vector3 (1.3f,71.6f,0f);
-		Cutscene ("IdleUp");
+        //transform.position = new Vector3 (1.3f,71.6f,0f);
+        StartCoroutine(Teleport_CR(1.3f,71.6f,0f));
+		//Cutscene ("IdleUp");
 		disabled = false;
 		InventoryManager.Instance.ShowInventory ();
 
@@ -213,6 +223,20 @@ public class PlayerController : MonoBehaviour {
 		canMove = true;
 		HideEmoji ();
 	}
+
+    public IEnumerator Teleport_CR(float x, float y, float z)
+    {
+        PlayerController.Instance.mov = new Vector2(0f, 0f);
+        PlayerController.Instance.anim.SetBool("Walk", false);
+        PlayerController.Instance.disabled = true;
+        FadeManager.Instance.StartCoroutine(FadeManager.Instance.FadeImage(false));
+        yield return new WaitForSeconds(1.5f);
+        transform.position = new Vector3(x, y, z);
+        yield return new WaitForSeconds(0.5f);
+        FadeManager.Instance.StartCoroutine(FadeManager.Instance.FadeImage(true));
+        yield return new WaitForSeconds(1f);
+        PlayerController.Instance.disabled = false;
+    }
 
 	void PonteConstruida(){
 		ponteTrigger.gameObject.SetActive (false);

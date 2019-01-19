@@ -11,7 +11,7 @@ public class Warpzone : MonoBehaviour {
     {
         if (col.tag == "Player")
         {
-            PlayerController.Instance.transform.position = warpPos.position + offset;
+            PlayerController.Instance.StartCoroutine(PlayerController.Instance.Teleport_CR(warpPos.position.x + offset.x, warpPos.position.y + offset.y, warpPos.position.z + offset.z));
         }
     }
 }
