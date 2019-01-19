@@ -122,7 +122,11 @@ public class PlayerController : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.B))
         {
-            RemoveItem(0);
+            RemoveItem(2);
+            RemoveItem(2);
+            RemoveItem(2);
+            RemoveItem(2);
+            RemoveItem(2);
         }
 
 		if (Input.GetKeyDown (KeyCode.F)) {
@@ -229,7 +233,12 @@ public class PlayerController : MonoBehaviour {
 			if (InventoryManager.Instance.slotItem [i] == 2) {
 				if (InventoryManager.Instance.slotAmount [i] >= 5) {
 					PonteConstruida ();
-				} else {
+                    RemoveItem(2);
+                    RemoveItem(2);
+                    RemoveItem(2);
+                    RemoveItem(2);
+                    RemoveItem(2);
+                } else {
 					print ("Pegue mais madeiras");
 				}
 			} else {
